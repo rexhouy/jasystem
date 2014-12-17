@@ -1,0 +1,2 @@
+class DoorsController < ApplicationController
+end

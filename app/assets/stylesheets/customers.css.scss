@@ -1,0 +1,41 @@
+// Place all the styles related to the customers controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+* {
+	color: #656565;
+}
+
+h1 {
+	font-size: 150%;
+	margin: 4px 0 2px 0;
+}
+
+h2 {
+	font-size: 120%;
+	margin: 4px 0 2px 0;
+}
+
+// Brand
+.navbar-brand {
+	color:#3071a9 !important;
+}
+
+// Footer
+body {
+	padding-bottom: 60px; /* Make space for footer*/
+}
+.footer {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	/* Set the fixed height of the footer here */
+	height: 60px;
+	background-color: #f5f5f5;
+}
+.container .text-muted {
+	margin: 20px 0;
+}
+.footer > .container {
+	padding-right: 15px;
+	padding-left: 15px;
+}
