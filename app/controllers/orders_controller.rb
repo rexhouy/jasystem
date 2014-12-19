@@ -6,7 +6,8 @@ class OrdersController < ApplicationController
     @order_date = params[:order_date] || ""
     @delivery_date = params[:delivery_date] || ""
 
-    @orders = Order.filter(params).all
+    @orders = Order.filter(params).distinct
+    puts @orders.inspect
   end
 
   def new
@@ -22,6 +23,16 @@ class OrdersController < ApplicationController
     else
       render :action => "new"
     end
+  end
+
+  def show
+    @order = Order.find(params[:id])
+  end
+
+  def destroy
+    @order = Order.find(params[:id])
+    @order.destroy
+    redirect_to orders_path
   end
 
   private

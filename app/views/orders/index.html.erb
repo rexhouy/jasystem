@@ -1,97 +1,74 @@
 <div class="row">
 
-	<div class="col-sm-3 col-md-2 sidebar">
-		<h2 class="page-header">搜索</h2>
-		<%= form_tag 'orders', method: 'get', role:'form' do %>
-		<div class="form-group">
-			<%= label_tag :customer, '客户' %>
-			<%= text_field_tag :customer, @customer, class: 'form-control', placeholder: '张三' %>
-		</div>
-		<div class="form-group">
-			<%= label_tag :type, '类型' %>
-			<%= select_tag :type, options_for_select({ '卫生间门' => '1'}, @type), class: 'form-control' %>
-		</div>
-		<div class="form-group">
-			<%= label_tag :order_date, '下单日期' %>
-			<%= date_field_tag :order_date, @order_date, class: 'form-control' %>
-		</div>
-		<div class="form-group">
-			<%= label_tag :delivery_date, '交货日期' %>
-			<%= date_field_tag :delivery_date, @delivery_date, class: 'form-control' %>
-		</div>
-		<%= submit_tag '查询', class: 'btn btn-primary active' %>
-		<% end %>
-	</div>
-	<div class="col-sm-9 col-md-10 main">
-		<div class="panel panel-default" style="margin-top:18px;">
-			<div class="panel-heading">
-				<h1 style="display: inline-block;">订单管理</h1>
-				<%= link_to new_order_path, class: "btn btn-primary pull-right", role: "button" do %>
-						<span class='glyphicon glyphicon-plus' style='color:#fff;'></span> 新建订单
-				<% end %>
-<!--  -->
-			</div>
+  <div class="col-sm-3 col-md-2 sidebar">
+    <h2 class="page-header">搜索</h2>
+    <%= form_tag orders_path, method: 'get', role:'form' do %>
+      <div class="form-group">
+	<%= label_tag :customer, '客户' %>
+	<%= text_field_tag :customer, @customer, class: 'form-control', placeholder: '张三' %>
+      </div>
+      <div class="form-group">
+	<%= label_tag :type, '类型' %>
+	<%= select_tag :type, options_for_select({ '卫生间门' => 'BathroomDoor'}, @type), class: 'form-control' %>
+        </div>
+      <div class="form-group">
+	<%= label_tag :order_date, '下单日期' %>
+	<%= date_field_tag :order_date, @order_date, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+	<%= label_tag :delivery_date, '交货日期' %>
+	<%= date_field_tag :delivery_date, @delivery_date, class: 'form-control' %>
+      </div>
+      <%= submit_tag '查询', class: 'btn btn-primary active' %>
+    <% end %>
+  </div>
+  <div class="col-sm-9 col-md-10 main">
+    <div class="panel panel-default" style="margin-top:18px;">
+      <div class="panel-heading">
+	<h1 style="display: inline-block;">订单管理</h1>
+	<%= link_to new_order_path, class: "btn btn-primary pull-right", role: "button" do %>
+	  <span class='glyphicon glyphicon-plus' style='color:#fff;'></span> 新建订单
+	<% end %>
 
-			<div class="panel-body">
-				<table id="pwd-table" class="table table-hover">
-					<thead>
-						<tr>
-							<th>#</th>
-							<th>客户</th>
-							<th>规格</th>
-							<th>类型</th>
-							<th>数量</th>
-							<th>下单日期</th>
-							<th>交货日期</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>1</td>
-							<td><a href="#">张三</a></td>
-							<td>1.4,&nbsp;1920*800</td>
-							<td>卫生间门</td>
-							<td>1</td>
-							<td>2014-12-12</td>
-							<td>2015-01-01</td>
-						</tr>
-						<tr>
-							<td></td>
-							<td></td>
-							<td>1.0,&nbsp;2100*900</td>
-							<td>卫生间门</td>
-							<td>10</td>
-							<td>2014-12-12</td>
-							<td>2015-01-01</td>
-						</tr>
-						<tr>
-							<td></td>
-							<td></td>
-							<td>1.0,&nbsp;2100*900</td>
-							<td>防盗门</td>
-							<td>1</td>
-							<td>2014-12-12</td>
-							<td>2015-01-01</td>
-						</tr>
-						<tr>
-							<td>2</td>
-							<td><a href="#">李四</a></td>
-							<td>1.0,&nbsp;2100*900</td>
-							<td>防盗门</td>
-							<td>1</td>
-							<td>2014-12-12</td>
-							<td>2015-01-01</td>
-						</tr>
-					</tbody>
-				</table>
-				<nav class="pull-left">
-					<ul class="pager">
-						<li><a href="#">上一页</a></li>
-						<li><a href="#">下一页</a></li>
-					</ul>
-				</nav>
+      </div>
 
-			</div>
-		</div>
-	</div>
+      <div class="panel-body">
+	<table id="pwd-table" class="table table-hover">
+	  <thead>
+	    <tr>
+	      <th>#</th>
+	      <th>客户</th>
+	      <th>规格</th>
+	      <th>类型</th>
+	      <th>数量</th>
+	      <th>下单日期</th>
+	      <th>交货日期</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	    <% @orders.each_with_index do |order, index| %>
+	      <% order.doors.each_with_index do |door, i| %>
+	        <tr>
+		  <td><%= index+1 if i.eql? 0 %></td>
+		  <td><%= link_to(order.customer.name, order_path(order)) if i.eql?(0) %></td>
+		  <td><%= "#{door.material},  #{door.size_y} * #{door.size_x}" %></td>
+		    <td>卫生间门</td>
+		    <td><%= door.count %></td>
+		    <td><%= order.order_date %></td>
+		    <td><%= order.delivery_date %></td>
+		</tr>
+	      <% end %>
+	    <% end %>
+	  </tbody>
+	</table>
+	<nav class="pull-left">
+	  <ul class="pager">
+	    <li><a href="#">上一页</a></li>
+	    <li><a href="#">下一页</a></li>
+	  </ul>
+	</nav>
+
+      </div>
+    </div>
+  </div>
 </div>
