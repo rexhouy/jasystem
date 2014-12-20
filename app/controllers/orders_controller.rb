@@ -6,7 +6,7 @@ class OrdersController < ApplicationController
     @order_date = params[:order_date] || ""
     @delivery_date = params[:delivery_date] || ""
 
-    @orders = Order.filter(params).distinct
+    @orders = Order.filter(params).distinct.paginate(:page => params[:page])
     puts @orders.inspect
   end
 

@@ -1,5 +1,4 @@
 <div class="row">
-
   <div class="col-sm-3 col-md-2 sidebar">
     <h2 class="page-header">搜索</h2>
     <%= form_tag orders_path, method: 'get', role:'form' do %>
@@ -29,11 +28,10 @@
 	<%= link_to new_order_path, class: "btn btn-primary pull-right", role: "button" do %>
 	  <span class='glyphicon glyphicon-plus' style='color:#fff;'></span> 新建订单
 	<% end %>
-
       </div>
 
       <div class="panel-body">
-	<table id="pwd-table" class="table table-hover">
+	<table class="table table-hover">
 	  <thead>
 	    <tr>
 	      <th>#</th>
@@ -61,13 +59,9 @@
 	    <% end %>
 	  </tbody>
 	</table>
-	<nav class="pull-left">
-	  <ul class="pager">
-	    <li><a href="#">上一页</a></li>
-	    <li><a href="#">下一页</a></li>
-	  </ul>
-	</nav>
-
+        <div class="pagination">
+          <%= will_paginate @orders, renderer: BootstrapPagination::Rails %>
+        </div>
       </div>
     </div>
   </div>

@@ -1,106 +1,110 @@
 <%= form_for @order, method: 'post', html: {role:'form', class:'form-horizontal'} do |order| %>
-<fieldset id="customer_info">
-	<legend>客户信息</legend>
-	<%= order.fields_for :customer do |c| %>
-	<div class="form-group">
-		<%= c.label :name, '名字', class: 'col-sm-2 control-label' %>
-		<div class="col-sm-2">
-			<%= c.text_field :name, class: 'form-control', placeholder: '张三', :required => true %>
-		</div>
+  <fieldset id="customer_info">
+    <legend>客户信息</legend>
+    <%= order.fields_for :customer do |c| %>
+      <div class="form-group">
+	<%= c.label :name, '名字', class: 'col-sm-2 control-label' %>
+	<div class="col-sm-2">
+	  <%= c.text_field :name, class: 'form-control', placeholder: '张三', :required => true %>
 	</div>
-	<div class="form-group">
-		<%= c.label :address, '地址', class: 'col-sm-2 control-label' %>
-		<div class="col-sm-8">
-			<%= c.text_field :address, class: 'form-control', placeholder: '麒麟区', :required => true %>
-		</div>
+      </div>
+      <div class="form-group">
+	<%= c.label :address, '地址', class: 'col-sm-2 control-label' %>
+	<div class="col-sm-8">
+	  <%= c.text_field :address, class: 'form-control', placeholder: '麒麟区', :required => true %>
 	</div>
-	<div class="form-group">
-		<%= c.label :phone, '电话', class: 'col-sm-2 control-label' %>
-		<div class="col-sm-3">
-			<%= c.phone_field :phone, class: 'form-control', placeholder: '12345678901', :required => true %>
-		</div>
+      </div>
+      <div class="form-group">
+	<%= c.label :phone, '电话', class: 'col-sm-2 control-label' %>
+	<div class="col-sm-3">
+	  <%= c.phone_field :phone, class: 'form-control', placeholder: '12345678901', :required => true %>
 	</div>
-	<nav>
-		<ul class="pager pull-right">
-			<li><a href="#" id="customer_next">下一步</a></li>
-		</ul>
-	</nav>
-	<% end %>
-</fieldset>
+      </div>
+      <hr>
+      <nav>
+	<ul class="pager pull-right">
+	  <li><a href="#" id="customer_next">下一步</a></li>
+          <li><%= link_to "取消", orders_path %></li>
+	</ul>
+      </nav>
+    <% end %>
+  </fieldset>
 
 
-<fieldset style="display:none;" id="order_info">
-	<legend>订单信息
-		<a href="#" class="btn btn-primary active pull-right" id="add_bathroom_door" style="position:relative;top:-10px">追加卫生间门</a>
-	</legend>
-	<div id="doors_container">
-	</div>
-	<script id="doors_info_data" type="text/data">
-		<%= @order.doors.to_json %>
-	</script>
-	<script id="doors_template" type="text/template">
-		<div>
-			<button type="button" class="close" onclick="removeDoor(this)"><span aria-hidden="true">×</span></button>
-			<div class="form-group">
-				<label class="control-label col-sm-2" for="order_doors_attributes_#index_material">材料</label>
-				<div class="col-sm-2">
-					<select class="form-control" id="order_doors_attributes_#index_material">
-						<option value="0.8">0.8</option>
-						<option value="1.0">1.0</option>
-						<option value="1.4">1.4</option></select>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="control-label col-sm-2" for="order_doors_attributes_#index_size">规格</label>
-				<div class="col-sm-2">
-					<input class="form-control" id="order_doors_attributes_#index_size_y" placeholder="2000" required="required" type="number">
-				</div>
-				<div class="col-sm-2">
-					<input class="form-control" id="order_doors_attributes_#index_size_x" placeholder="900" required="required" type="number">
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="control-label col-sm-2" for="order_doors_attributes_#index_sill">吊脚</label>
-				<div class="col-sm-2">
-					<input class="form-control" id="order_doors_attributes_#index_sill" placeholder="15" required="required" type="number">
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="control-label col-sm-2" for="order_doors_attributes_#index_count">数量</label>
-				<div class="col-sm-2">
-					<input class="form-control" id="order_doors_attributes_#index_count" placeholder="1" required="required" type="number">
-				</div>
-			</div>
-			<hr>
-		</div>
-	</script>
-	<nav>
-		<ul class="pager pull-right">
-			<li><a href="#" id="order_prev">上一步</a></li>
-			<li><a href="#" id="order_next">下一步</a></li>
-		</ul>
-	</nav>
-</fieldset>
+  <fieldset style="display:none;" id="order_info">
+    <legend>订单信息
+      <a href="#" class="btn btn-primary active pull-right" id="add_bathroom_door" style="position:relative;top:-10px">追加卫生间门</a>
+    </legend>
+    <div id="doors_container">
+    </div>
+    <script id="doors_info_data" type="text/data">
+      <%= @order.doors.to_json %>
+    </script>
+    <script id="doors_template" type="text/template">
+      <div>
+  <button type="button" class="close" onclick="removeDoor(this)"><span aria-hidden="true">×</span></button>
+  <div class="form-group">
+  <label class="control-label col-sm-2" for="order_doors_attributes_#index_material">材料</label>
+  <div class="col-sm-2">
+  <select class="form-control" id="order_doors_attributes_#index_material">
+  <option value="0.8">0.8</option>
+  <option value="1.0">1.0</option>
+  <option value="1.4">1.4</option></select>
+  </div>
+  </div>
+  <div class="form-group">
+  <label class="control-label col-sm-2" for="order_doors_attributes_#index_size">规格</label>
+  <div class="col-sm-2">
+  <input class="form-control" id="order_doors_attributes_#index_size_y" placeholder="2000" required="required" type="number">
+  </div>
+  <div class="col-sm-2">
+  <input class="form-control" id="order_doors_attributes_#index_size_x" placeholder="900" required="required" type="number">
+  </div>
+  </div>
+  <div class="form-group">
+  <label class="control-label col-sm-2" for="order_doors_attributes_#index_sill">吊脚</label>
+  <div class="col-sm-2">
+  <input class="form-control" id="order_doors_attributes_#index_sill" placeholder="15" required="required" type="number">
+  </div>
+  </div>
+  <div class="form-group">
+  <label class="control-label col-sm-2" for="order_doors_attributes_#index_count">数量</label>
+  <div class="col-sm-2">
+  <input class="form-control" id="order_doors_attributes_#index_count" placeholder="1" required="required" type="number">
+  </div>
+  </div>
+  <hr>
+  </div>
+    </script>
+    <nav>
+      <ul class="pager pull-right">
+	<li><a href="#" id="order_prev">上一步</a></li>
+	<li><a href="#" id="order_next">下一步</a></li>
+        <li><%= link_to "取消", orders_path %></li>
+      </ul>
+    </nav>
+  </fieldset>
 
-<fieldset style="display:none;" id="other_info">
-	<legend>其他信息</legend>
-	<div class="form-group">
-		<%= order.label :order_date, '下单日期', class: 'control-label col-sm-2' %>
-		<div class="col-sm-2">
-			<%= order.date_field :order_date, class: 'form-control', :required => true %>
-		</div>
-	</div>
-	<div class="form-group">
-		<%= order.label :delivery_date, '交货日期', class: 'control-label col-sm-2' %>
-		<div class="col-sm-2">
-			<%= order.date_field :delivery_date, class: 'form-control', :required => true %>
-		</div>
-	</div>
-	<nav>
-		<ul class="pager pull-right">
-			<li><a href="#" id="other_prev" style="margin-right: 20px">上一步</a></li>
-			<li><%= submit_tag '提交', class: 'btn btn-primary active', onclick:'prepareData()' %></li>
-		</ul>
-	</nav>
-</fieldset>
+  <fieldset style="display:none;" id="other_info">
+    <legend>其他信息</legend>
+    <div class="form-group">
+      <%= order.label :order_date, '下单日期', class: 'control-label col-sm-2' %>
+      <div class="col-sm-2">
+	<%= order.date_field :order_date, class: 'form-control', :required => true %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= order.label :delivery_date, '交货日期', class: 'control-label col-sm-2' %>
+      <div class="col-sm-2">
+	<%= order.date_field :delivery_date, class: 'form-control', :required => true %>
+      </div>
+    </div>
+    <nav>
+      <ul class="pager pull-right">
+	<li><a href="#" id="other_prev" style="margin-right: 20px">上一步</a></li>
+        <li><%= link_to "取消", orders_path %></li>
+	<li><%= submit_tag '提交', class: 'btn btn-primary active', onclick:'prepareData()' %></li>
+      </ul>
+    </nav>
+  </fieldset>
 <% end %>
