@@ -1,2 +1,0 @@
-class DoorsController < ApplicationController
-end

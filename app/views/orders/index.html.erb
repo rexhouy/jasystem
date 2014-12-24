@@ -44,17 +44,17 @@
 	    </tr>
 	  </thead>
 	  <tbody>
-	    <% @orders.each_with_index do |order, index| %>
+            <% @orders.each_with_index do |order, index| %>
 	      <% order.doors.each_with_index do |door, i| %>
-	        <tr>
-		  <td><%= index+1 if i.eql? 0 %></td>
+                <tr>
+                  <td><%= index+1 if i.eql? 0 %></td>
 		  <td><%= link_to(order.customer.name, order_path(order)) if i.eql?(0) %></td>
-		  <td><%= "#{door.material},  #{door.size_y} * #{door.size_x}" %></td>
+                  <td><%= "#{door.material},  #{door.size_y} * #{door.size_x}" %></td>
 		    <td>卫生间门</td>
-		    <td><%= door.count %></td>
+                    <td><%= door.count %></td>
 		    <td><%= order.order_date %></td>
 		    <td><%= order.delivery_date %></td>
-		</tr>
+                </tr>
 	      <% end %>
 	    <% end %>
 	  </tbody>

@@ -1,9 +1,8 @@
 Rails.application.routes.draw do
-  resources :orders
-
+  resources :orders do
+    resources :bathroom_doors
+  end
   resources :customers
-
-  resources :doors
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

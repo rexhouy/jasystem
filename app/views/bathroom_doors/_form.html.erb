@@ -1,0 +1,34 @@
+<%= form_for [@order, @order.doors.build], html: {role:'form', class:'form-horizontal'} do %>
+<div>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="order_doors_attributes_#index_material">材料</label>
+    <div class="col-sm-2">
+      <select class="form-control" id="order_doors_attributes_#index_material">
+        <option value="0.8">0.8</option>
+        <option value="1.0">1.0</option>
+        <option value="1.4">1.4</option></select>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="order_doors_attributes_#index_size">规格</label>
+    <div class="col-sm-2">
+      <input class="form-control" id="order_doors_attributes_#index_size_y" placeholder="2000" required="required" type="number">
+    </div>
+    <div class="col-sm-2">
+      <input class="form-control" id="order_doors_attributes_#index_size_x" placeholder="900" required="required" type="number">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="order_doors_attributes_#index_sill">吊脚</label>
+    <div class="col-sm-2">
+      <input class="form-control" id="order_doors_attributes_#index_sill" placeholder="15" required="required" type="number">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="order_doors_attributes_#index_count">数量</label>
+    <div class="col-sm-2">
+      <input class="form-control" id="order_doors_attributes_#index_count" placeholder="1" required="required" type="number">
+    </div>
+  </div>
+</div>
+<% end %>

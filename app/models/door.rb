@@ -3,3 +3,5 @@ class Door < ActiveRecord::Base
 
   validates :count, presence: true
 end
+
+class BathroomDoor < Door; end

@@ -23,5 +23,3 @@ class Order < ActiveRecord::Base
   end
 
 end
-
-class BathroomDoor < Order; end

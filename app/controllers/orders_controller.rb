@@ -35,11 +35,29 @@ class OrdersController < ApplicationController
     redirect_to orders_path
   end
 
+  def edit
+    @order = Order.find(params[:id])
+  end
+
+  def update
+    @order = Order.find(params[:id])
+    if @order.update(update_params)
+      redirect_to @order
+    else
+      render 'edit'
+    end
+  end
+
   private
   def order_params
     params.require(:order).permit(:order_date, :delivery_date,
                                   customer_attributes: [:name, :address, :phone],
-                                  doors_attributes: [:sill, :count, :size_x, :size_y, :material])
+                                  doors_attributes: [:sill, :count, :size_x, :size_y, :material, :type])
+  end
+
+  def update_params
+    params.require(:order).permit(:order_date, :delivery_date,
+                                  customer_attributes: [:name, :address, :phone])
   end
 
 end
