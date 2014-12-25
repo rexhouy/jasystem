@@ -5,9 +5,11 @@ class OrdersController < ApplicationController
     @type = params[:type] || ""
     @order_date = params[:order_date] || ""
     @delivery_date = params[:delivery_date] || ""
+    params[:status] ||= 0 # Unfinished as default
+    puts params.inspect
+    @status = params[:status]
 
     @orders = Order.filter(params).distinct.paginate(:page => params[:page])
-    puts @orders.inspect
   end
 
   def new
@@ -41,7 +43,7 @@ class OrdersController < ApplicationController
 
   def update
     @order = Order.find(params[:id])
-    if @order.update(update_params)
+    if @order.updateCascade(update_params, params[:order][:doors_attributes])
       redirect_to @order
     else
       render 'edit'
@@ -50,14 +52,15 @@ class OrdersController < ApplicationController
 
   private
   def order_params
-    params.require(:order).permit(:order_date, :delivery_date,
+    params.require(:order).permit(:order_date, :delivery_date, :status,
                                   customer_attributes: [:name, :address, :phone],
-                                  doors_attributes: [:sill, :count, :size_x, :size_y, :material, :type])
+                                  doors_attributes: [:sill, :count, :size_x, :size_y, :material, :type, :status])
   end
 
   def update_params
-    params.require(:order).permit(:order_date, :delivery_date,
-                                  customer_attributes: [:name, :address, :phone])
+    params.require(:order).permit(:order_date, :delivery_date, :status,
+                                  customer_attributes: [:id, :name, :address, :phone],
+                                  doors_attributes: [:id, :sill, :count, :size_x, :size_y, :material, :type, :status])
   end
 
 end

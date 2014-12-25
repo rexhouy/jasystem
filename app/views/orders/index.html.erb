@@ -18,6 +18,10 @@
 	<%= label_tag :delivery_date, '交货日期' %>
 	<%= date_field_tag :delivery_date, @delivery_date, class: 'form-control' %>
       </div>
+      <div class="form-group">
+	<%= label_tag :status, '状态' %>
+	<%= select_tag :status, options_for_select({"未完成" => 0, "已完成" => 1}, @status), class: 'form-control' %>
+      </div>
       <%= submit_tag '查询', class: 'btn btn-primary active' %>
     <% end %>
   </div>
@@ -41,6 +45,7 @@
 	      <th>数量</th>
 	      <th>下单日期</th>
 	      <th>交货日期</th>
+              <th>状态</th>
 	    </tr>
 	  </thead>
 	  <tbody>
@@ -54,10 +59,18 @@
                     <td><%= door.count %></td>
 		    <td><%= order.order_date %></td>
 		    <td><%= order.delivery_date %></td>
+                    <td><span class="status-bar <%= status_class door %>">&nbsp;</span></td>
                 </tr>
 	      <% end %>
 	    <% end %>
 	  </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="2">* 未完成: <span class="status-bar unfinished"></span></td>
+              <td colspan="1">* 已完成: <span class="status-bar finished"></span></td>
+              <td colspan="5">* 已延期: <span class="status-bar delayed"></span></td>
+            </tr>
+          </tfoot>
 	</table>
         <div class="pagination">
           <%= will_paginate @orders, renderer: BootstrapPagination::Rails %>

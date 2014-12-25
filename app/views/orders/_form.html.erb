@@ -2,6 +2,7 @@
   <fieldset id="customer_info">
     <legend>客户信息</legend>
     <%= order.fields_for :customer do |c| %>
+      <%= c.hidden_field :id %>
       <div class="form-group">
         <%= c.label :name, '名字', class: 'col-sm-2 control-label' %>
         <div class="col-sm-2">
@@ -30,11 +31,12 @@
         <thead>
           <tr>
             <th style="display:none"></th>
-            <th width="15%">材料</th>
+            <th width="10%">材料</th>
             <th width="30%" colspan="3">规格(mm)</th>
-            <th width="15%">吊脚(mm)</th>
+            <th width="10%">吊脚(mm)</th>
             <th width="15%">类型</th>
-            <th width="15%">数量</th>
+            <th width="10%">数量</th>
+            <th width="15%">状态</th>
             <th width="10%">操作</th>
           </tr>
         </thead>
@@ -65,9 +67,8 @@
               <%= door.number_field :count,
                   {class: 'form-control', placeholder: '1', required: 'required'} %></td>
             <td>
-              <button type="button" class="btn btn-success" title="保存修改">
-                <span class='glyphicon glyphicon-edit' style='color:#fff;'></span>
-              </button>
+              <%= door.select :status, [["未完成", 0],["已完成", 1]], {}, {class:'form-control', required:'required'} %></td>
+            <td>
               <button type="button" class="btn btn-danger" onclick="removeDoor(this)" title="删除">
                 <span class='glyphicon glyphicon-trash' style='color:#fff;'></span>
               </button>
@@ -102,6 +103,13 @@
         <%= order.date_field :delivery_date, class: 'form-control', :required => true %>
       </div>
     </div>
+    <div class="form-group">
+      <%= order.label :status, '状态', class: 'control-label col-sm-2' %>
+      <div class="col-sm-2">
+        <%= order.select :status, [["未完成", 0],["已完成", 1]], {}, {class:'form-control', required:'required'} %>
+      </div>
+    </div>
+
     <nav>
       <ul class="pager pull-right">
         <li><%= link_to "取消", orders_path %></li>

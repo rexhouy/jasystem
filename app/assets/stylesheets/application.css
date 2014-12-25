@@ -29,6 +29,32 @@ h2 {
     margin: 4px 0 2px 0;
 }
 
+.navbar-header .navbar-brand {
+    color: #357ebd;
+}
+.navbar-header .navbar-brand:hover {
+    color: #285e8e;
+}
+
+.unfinished {
+    background-color: #ddd;
+}
+
+.finished {
+    background-color: #5cb85c;
+}
+
+.delayed {
+    background-color: #ec971f;
+}
+
+.status-bar {
+    display: inline-block;
+    width: 40px;
+    height: 12px;
+    vertical-align: middle;
+}
+
 .footer {
     width: 100%;
     /* Set the fixed height of the footer here */
