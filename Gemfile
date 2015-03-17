@@ -43,3 +43,6 @@ gem 'bootstrap-sass', '~> 3.1.1'
 
 # Pagination
 gem 'will_paginate-bootstrap'
+
+# Authentication
+gem 'devise'

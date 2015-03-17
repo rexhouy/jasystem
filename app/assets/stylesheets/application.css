@@ -11,7 +11,6 @@
  * file per style scope.
  *
  *= require bootstrap
- *= require_tree .
  *= require_self
  */
 
@@ -27,6 +26,10 @@ h1 {
 h2 {
     font-size: 120%;
     margin: 4px 0 2px 0;
+}
+
+body {
+    padding-bottom: 80px;
 }
 
 .navbar-header .navbar-brand {
@@ -56,8 +59,9 @@ h2 {
 }
 
 .footer {
+    position: fixed;
+    bottom: 0;
     width: 100%;
-    /* Set the fixed height of the footer here */
     height: 60px;
     background-color: #f5f5f5;
 }
@@ -69,4 +73,41 @@ h2 {
 .footer > .container {
     padding-right: 15px;
     padding-left: 15px;
+}
+
+@media (min-width: 640px) {
+    .container-small {
+        width: 360px;
+    }
+}
+@media (max-width: 640px) {
+    .container-small {
+        width: 274px;
+    }
+}
+.container-small {
+    margin: 0 auto;
+}
+
+.card {
+    background-color: #f7f7f7;
+    padding: 40px;
+    border-radius: 2px;
+    box-shadow:  #999 0px 2px 2px 0px;
+    margin: 5px 0;
+}
+.login-card input:not([type=checkbox]) {
+    border: 1px solid #c4c4c4;
+    border-collapse: collapse;
+    height: 40px;
+    padding: 2px 5px;
+    width: 100%;
+}
+
+.login-card .logo {
+  color: #357ebd;
+  font-size: 25px;
+  width: 100%;
+  text-align: center;
+  padding: 20px 0;
 }

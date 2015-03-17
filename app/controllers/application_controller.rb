@@ -1,18 +1,23 @@
 # -*- coding: utf-8 -*-
 class ApplicationController < ActionController::Base
-  # Prevent CSRF attacks by raising an exception.
-  # For APIs, you may want to use :null_session instead.
-  protect_from_forgery with: :exception
+        # Prevent CSRF attacks by raising an exception.
+        # For APIs, you may want to use :null_session instead.
+        protect_from_forgery with: :exception
 
-  # Load menu info
-  before_action :menu
+        # Authenticate users using devise
+        before_action :authenticate_user!
 
-  def menu
-    @menus = [{:url => "/orders", :text => "订单管理", :active => false}]
+        # Load menu info
+        before_action :menu
 
-    @menus.each do |menu|
-      menu[:active] = menu[:url].eql? "/#{params[:controller]}"
-    end
-  end
+        def menu
+                @menus = [{:url => "/orders", :text => "订单管理", :active => false},
+                          {:url => "/reports", :text => "报表", :active => false},
+                          {:url => "/tasks", :text => "任务管理", :active => false}]
+
+                @menus.each do |menu|
+                        menu[:active] = menu[:url].eql? "/#{params[:controller]}"
+                end
+        end
 
 end

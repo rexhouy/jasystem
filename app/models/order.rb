@@ -1,6 +1,6 @@
 class Order < ActiveRecord::Base
-  belongs_to :customer, dependent: :destroy
-  has_many :doors, dependent: :destroy
+  belongs_to :customer, dependent: :delete
+  has_many :doors, dependent: :delete_all
 
   accepts_nested_attributes_for :customer
   accepts_nested_attributes_for :doors
@@ -35,7 +35,7 @@ class Order < ActiveRecord::Base
   end
 
 private
-    def find_destroied_doors(doors, new_doors_id)
+  def find_destroied_doors(doors, new_doors_id)
     doors.select { |door|
       !new_doors_id.include? door.id.to_s
     }

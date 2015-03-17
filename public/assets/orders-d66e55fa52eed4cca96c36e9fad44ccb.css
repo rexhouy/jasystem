@@ -1,0 +1,9 @@
+/* line 4, /home/rexhouy/workspace/jasystem/app/assets/stylesheets/orders.css.scss */
+fieldset {
+  margin: 20px auto;
+}
+
+/* line 8, /home/rexhouy/workspace/jasystem/app/assets/stylesheets/orders.css.scss */
+#print_output {
+  display: none;
+}

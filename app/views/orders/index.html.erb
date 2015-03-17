@@ -21,7 +21,7 @@
       <div class="form-group">
 	<%= label_tag :status, '状态' %>
 	<%= select_tag :status, options_for_select({"未完成" => 0, "已完成" => 1}, @status), class: 'form-control' %>
-      </div>
+        </div>
       <%= submit_tag '查询', class: 'btn btn-primary active' %>
     <% end %>
   </div>
@@ -54,7 +54,7 @@
                 <tr>
                   <td><%= index+1 if i.eql? 0 %></td>
 		  <td><%= link_to(order.customer.name, order_path(order)) if i.eql?(0) %></td>
-                  <td><%= "#{door.material},  #{door.size_y} * #{door.size_x}" %></td>
+                  <td><%= "#{door.material},  #{door.size_x} * #{door.size_y}" %></td>
 		    <td>卫生间门</td>
                     <td><%= door.count %></td>
 		    <td><%= order.order_date %></td>
@@ -66,9 +66,13 @@
 	  </tbody>
           <tfoot>
             <tr>
-              <td colspan="2">* 未完成: <span class="status-bar unfinished"></span></td>
-              <td colspan="1">* 已完成: <span class="status-bar finished"></span></td>
-              <td colspan="5">* 已延期: <span class="status-bar delayed"></span></td>
+              <td colspan="8">
+                <ul class="list-inline">
+                  <li>* 未完成：<span class="status-bar unfinished"></span></li>
+                  <li>* 已完成：<span class="status-bar finished"></span></li>
+                  <li>* 已延期：<span class="status-bar delayed"></span></li>
+                </ul>
+              </td>
             </tr>
           </tfoot>
 	</table>

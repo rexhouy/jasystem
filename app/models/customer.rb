@@ -1,5 +1,5 @@
 class Customer < ActiveRecord::Base
-  has_many :orders
+  has_one :order
 
   validates :name, presence: true
   validates :address, presence: true

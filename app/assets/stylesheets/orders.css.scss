@@ -4,3 +4,38 @@
 fieldset {
     margin: 20px auto;
 }
+
+#print_output {
+    display: none;
+}
+
+@media print {
+    html body .container * {
+        display: none;
+    }
+
+    #print_output, #print_output *{
+        display: block;
+    }
+
+    html, body {
+        width: 210mm;
+        height: 297mm;
+    }
+
+    .page-break {
+        page-break-before: always;
+    }
+
+    canvas {
+        width: 100%;
+    }
+
+    @page {
+        size: portrait A4;
+        margin-top: 5mm;
+        margin-bottom: 0;
+        margin-left: 0;
+        margin-right: 0;
+    }
+}

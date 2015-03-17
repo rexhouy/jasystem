@@ -3,11 +3,8 @@
     <%= link_to orders_path, class: "btn btn-primary" do %>
       <span class='glyphicon glyphicon-arrow-left' style='color:#fff;'></span> 返回
     <% end %>
-    <a href="#" class="btn btn-primary">
-      <span class='glyphicon glyphicon-eye-open' style='color:#fff;'></span> 打印预览
-    </a>
-    <a href="#" class="btn btn-primary">
-      <span class='glyphicon glyphicon-print' style='color:#fff;'></span> 打印
+    <a href="#print" class="btn btn-primary" id="print_btn">
+      <span class='glyphicon glyphicon-print' style='color:#fff;'></span> 打印图纸
     </a>
     <%= link_to edit_order_path(@order), class: "btn btn-primary" do %>
     <span class='glyphicon glyphicon-edit' style='color:#fff;'></span> 编辑
@@ -17,6 +14,9 @@
     <% end %>
     <hr>
   </p>
+
+  <%= hidden_field_tag "order_id", @order.id %>
+
   <fieldset id="customer_info">
     <legend>客户信息</legend>
     <div class="form-group">
@@ -60,7 +60,7 @@
           <tr>
             <td><%= index+1 %></td>
             <td><%= door.material %></td>
-            <td><%= door.size_y %> * <%= door.size_x %></td>
+            <td><%= door.size_x %> * <%= door.size_y %></td>
             <td><%= door.sill %></td>
             <td>卫生间门</td>
             <td><%= door.count %></td>
@@ -89,3 +89,17 @@
   </fieldset>
 
 </div>
+
+<section id="print_output">
+  <div class="container">
+    <section>
+      <%= image_tag  "page_1.png", id: "cover_page_img", style: "display:none;" %>
+      <canvas id="cover_page" width="720" height="1040"></canvas>
+    </section>
+    <section class="page page-break">
+      <%= image_tag  "page_2a.png", id: "size_page_img_a", style: "display:none;" %>
+      <%= image_tag  "page_2b.png", id: "size_page_img_b", style: "display:none;" %>
+      <canvas id="size_page" width="720" height="1040"></canvas>
+    </section>
+  </div>
+</section>
