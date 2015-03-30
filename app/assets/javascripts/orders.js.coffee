@@ -39,9 +39,13 @@ printer = () ->
         loadData = (id, func) ->
                 $.get "/orders/#{id}/print", func
 
+        getCanvas = () ->
+                canvas = $($("#canvas_template").html())
+                canvas.appendTo($("#print_output_container"))
+                canvas.find("canvas")[0]
 
         drawCover = (d) ->
-                canvas = document.getElementById("cover_page")
+                canvas = getCanvas()
                 ctx = canvas.getContext("2d")
                 ctx.drawImage($("#cover_page_img")[0],0,0)
 
@@ -111,7 +115,6 @@ printer = () ->
                 }
 
                 findImage = (material) ->
-                        console.log material
                         type = typeImageRelation[String(material)]
                         images[type]
 
@@ -130,7 +133,7 @@ printer = () ->
                         ctx.fillText(text, x, y)
 
                 image = findImage(d.material)
-                canvas = document.getElementById('size_page')
+                canvas = getCanvas()
                 ctx = canvas.getContext('2d')
                 ctx.drawImage($("#"+image.name)[0],0,0)
 

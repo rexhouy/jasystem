@@ -91,15 +91,25 @@
 </div>
 
 <section id="print_output">
-  <div class="container">
-    <section>
-      <%= image_tag  "page_1.png", id: "cover_page_img", style: "display:none;" %>
-      <canvas id="cover_page" width="720" height="1040"></canvas>
-    </section>
-    <section class="page page-break">
-      <%= image_tag  "page_2a.png", id: "size_page_img_a", style: "display:none;" %>
-      <%= image_tag  "page_2b.png", id: "size_page_img_b", style: "display:none;" %>
-      <canvas id="size_page" width="720" height="1040"></canvas>
-    </section>
+  <%= image_tag  "page_1.png", id: "cover_page_img", style: "display:none;" %>
+  <%= image_tag  "page_2a.png", id: "size_page_img_a", style: "display:none;" %>
+  <%= image_tag  "page_2b.png", id: "size_page_img_b", style: "display:none;" %>
+
+  <div class="container" id="print_output_container">
   </div>
+
+  <script type="draw/template" id="canvas_template">
+    <section>
+      <canvas width="720" height="1040"></canvas>
+    </section>
+  </script>
+
+  <!-- <script type="draw/template" id="canvas_template"> -->
+  <!--   <section class="page page-break"> -->
+  <!--     <canvas id="size_page" width="720" height="1040"></canvas> -->
+  <!--   </section> -->
+  <!-- </script> -->
+
+
+
 </section>
