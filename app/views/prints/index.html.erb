@@ -1,0 +1,79 @@
+<section id="operation_area">
+  <h1 class="page-header">图纸</h1>
+  <div class="col-sm-11 col-sm-offset-1">
+    <table class="table table-bordered" id="doors_info">
+      <thead>
+        <tr>
+          <th width="15%">材料</th>
+          <th width="30%" colspan="3">规格(mm)</th>
+          <th width="15%">吊脚(mm)</th>
+          <th width="20%">类型</th>
+          <th width="10%">操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <select name="material" class="form-control">
+              <option value="0.8">0.8</option>
+              <option value="1.0">1.0</option>
+              <option value="1.2">1.2</option>
+              <option value="1.4">1.4</option>
+            </select>
+          </td>
+          <td>
+            <input type="number" name="size_x" class="form-control" placeholder="900">
+          </td>
+          <td>*</td>
+          <td>
+            <input type="number" name="size_y" class="form-control" placeholder="2000">
+          </td>
+          <td>
+            <input type="number" name="sill" class="form-control" placeholder="15">
+          </td>
+          <td>
+            <select class="form-control" name="type">
+              <option value="BathroomDoor">卫生间门</option>
+            </select>
+          </td>
+          <td>
+            <button type="button" class="btn btn-danger" onclick="removeDoor(this)" title="删除">
+              <span class='glyphicon glyphicon-trash' style='color:#fff;'></span>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="9">
+            <a href="javascript:addDoor()" class="btn btn-default" id="add_bathroom_door">
+              <span class='glyphicon glyphicon-plus'></span> 追加
+            </a>
+            <a href="javascript:printDrawing()" class="btn btn-primary" id="print_btn">
+              <span class='glyphicon glyphicon-print' style='color:#fff;'></span> 打印图纸
+            </a>
+            <a href="javascript:printGlass()" class="btn btn-primary" id="print_btn">
+              <span class='glyphicon glyphicon-print' style='color:#fff;'></span> 打印玻璃尺寸
+            </a>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+</section>
+
+<section id="print_output">
+  <%= image_tag "page_1.png", style: "display:none", id: "cover_page_img" %>
+  <%= image_tag "page_2a.png", style: "display:none", id: "size_page_img_a" %>
+  <%= image_tag "page_2b.png", style: "display:none", id: "size_page_img_b" %>
+
+  <div  id="print_output_container">
+  </div>
+
+  <script type="draw/template" id="canvas_template" style="display:none">
+    <section>
+      <canvas width="770" height="1050"></canvas>
+    </section>
+  </script>
+
+</section>

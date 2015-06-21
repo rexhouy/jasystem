@@ -1,0 +1,37 @@
+<h1 class="page-header">设置报价系统</h1>
+<a href="/attributes?category=类别" style="margin: 5px 10px">类别</a>
+<a href="/attributes?category=开向" style="margin: 5px 10px">开向</a>
+<a href="/attributes?category=花型" style="margin: 5px 10px">花型</a>
+<a href="/attributes?category=门框" style="margin: 5px 10px">门框</a>
+<a href="/attributes?category=颜色" style="margin: 5px 10px">颜色</a>
+<a href="/attributes?category=锁具" style="margin: 5px 10px">锁具</a>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>分类</th>
+      <th>类型</th>
+      <th>名称</th>
+      <th>价格</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @attributes.each do |attribute| %>
+      <tr>
+        <td><%= attribute.category %></td>
+        <td><%= attribute.kind %></td>
+        <td><%= attribute.name %></td>
+        <td><%= number_to_currency attribute.price, precision: 0 %></td>
+        <td><%= link_to '编辑', edit_attribute_path(attribute) %>&nbsp;&nbsp;
+          <%= link_to '删除', attribute, method: :delete, data: { confirm: '确定删除?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to new_attribute_path, class: "btn btn-default" do %>
+  <i class="glyphicon glyphicon-plus"></i> 创建报价属性
+  <% end %>

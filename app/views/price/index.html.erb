@@ -1,0 +1,35 @@
+<h1 class="page-header">报价</h1>
+<input type="hidden" id="price" value="true">
+<a href="/attributes" class="btn btn-default pull-right" style="position:relative; top:-65px;"><i class="glyphicon glyphicon-cog"></i> 设置</a>
+<div class="form-horizontal">
+  <% @category_groups.each do |group, kinds| %>
+    <div class="form-group">
+      <label class="col-sm-2 control-label"><%= group %></label>
+      <% unless kinds.key?("") %>
+      <div class="col-sm-2">
+        <select class="form-control" name="attribute" onchange="price.change(this)">
+          <option>请选择</option>
+          <% kinds.each do |kind, attrs| %>
+          <option value="<%=kind.gsub(".", "_")%>"><%=kind%></option>
+          <% end %>
+        </select>
+      </div>
+      <% end %>
+      <div class="col-sm-2">
+        <% kinds.each do |kind, attrs| %>
+        <select class="form-control" name="attribute" <% unless kinds.key?("") %>style="display:none;"<% end %> id="<%=kind.gsub(".", "_")%>">
+          <option>请选择</option>
+          <% attrs.each do |attr| %>
+          <option value="<%= attr.price %>"><%= attr.name %></option>
+          <% end %>
+        </select>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+  <div class="form-group">
+    <div class="col-sm-offset-2">
+      <button class="btn btn-primary" onclick="price.compute()">计算</button>
+    </div>
+  </div>
+</div>

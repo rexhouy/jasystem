@@ -1,0 +1,3 @@
+module PriceHelper
+
+end

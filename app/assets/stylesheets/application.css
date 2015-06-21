@@ -14,100 +14,108 @@
  *= require_self
  */
 
-* {
-    color: #656565;
-}
+/*
+ * Base structure
+ */
 
-h1 {
-    font-size: 150%;
-    margin: 4px 0 2px 0;
-}
-
-h2 {
-    font-size: 120%;
-    margin: 4px 0 2px 0;
-}
-
+/* Move down content because we have a fixed navbar that is 50px tall */
 body {
-    padding-bottom: 80px;
+    padding-top: 50px;
 }
 
-.navbar-header .navbar-brand {
-    color: #357ebd;
-}
-.navbar-header .navbar-brand:hover {
-    color: #285e8e;
+
+/*
+ * Global add-ons
+ */
+
+.sub-header {
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
 }
 
-.unfinished {
-    background-color: #ddd;
+/*
+ * Top navigation
+ * Hide default border to remove 1px line.
+ */
+.navbar-fixed-top {
+    border: 0;
 }
 
-.finished {
-    background-color: #5cb85c;
+/*
+ * Sidebar
+ */
+
+/* Hide for mobile, show later */
+.sidebar {
+    display: none;
+}
+@media (min-width: 768px) {
+    .sidebar {
+        position: fixed;
+        top: 51px;
+        bottom: 0;
+        left: 0;
+        z-index: 1000;
+        display: block;
+        padding: 20px;
+        overflow-x: hidden;
+        overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+        background-color: #f5f5f5;
+        border-right: 1px solid #eee;
+    }
 }
 
-.delayed {
-    background-color: #ec971f;
+/* Sidebar navigation */
+.nav-sidebar {
+    margin-right: -21px; /* 20px padding + 1px border */
+    margin-bottom: 20px;
+    margin-left: -20px;
+}
+.nav-sidebar > li > a {
+    padding-right: 20px;
+    padding-left: 20px;
+}
+.nav-sidebar > .active > a,
+.nav-sidebar > .active > a:hover,
+.nav-sidebar > .active > a:focus {
+    color: #fff;
+    background-color: #428bca;
 }
 
-.status-bar {
+
+/*
+ * Main content
+ */
+
+.main {
+    padding: 20px;
+}
+@media (min-width: 768px) {
+    .main {
+        padding-right: 40px;
+        padding-left: 40px;
+    }
+}
+.main .page-header {
+    margin-top: 0;
+}
+
+
+/*
+ * Placeholder dashboard ideas
+ */
+
+.placeholders {
+    margin-bottom: 30px;
+    text-align: center;
+}
+.placeholders h4 {
+    margin-bottom: 0;
+}
+.placeholder {
+    margin-bottom: 20px;
+}
+.placeholder img {
     display: inline-block;
-    width: 40px;
-    height: 12px;
-    vertical-align: middle;
-}
-
-.footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    height: 60px;
-    background-color: #f5f5f5;
-}
-
-.container .text-muted {
-    margin: 20px 0;
-}
-
-.footer > .container {
-    padding-right: 15px;
-    padding-left: 15px;
-}
-
-@media (min-width: 640px) {
-    .container-small {
-        width: 360px;
-    }
-}
-@media (max-width: 640px) {
-    .container-small {
-        width: 274px;
-    }
-}
-.container-small {
-    margin: 0 auto;
-}
-
-.card {
-    background-color: #f7f7f7;
-    padding: 40px;
-    border-radius: 2px;
-    box-shadow:  #999 0px 2px 2px 0px;
-    margin: 5px 0;
-}
-.login-card input:not([type=checkbox]) {
-    border: 1px solid #c4c4c4;
-    border-collapse: collapse;
-    height: 40px;
-    padding: 2px 5px;
-    width: 100%;
-}
-
-.login-card .logo {
-  color: #357ebd;
-  font-size: 25px;
-  width: 100%;
-  text-align: center;
-  padding: 20px 0;
+    border-radius: 50%;
 }

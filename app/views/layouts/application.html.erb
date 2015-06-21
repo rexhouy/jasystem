@@ -9,51 +9,42 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
-    <nav class="navbar navbar-default navbar-static-top" role="navigation">
-      <div class="container">
-	<div class="navbar-header">
-	  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-	    <span class="sr-only">Toggle navigation</span>
-	    <span class="icon-bar"></span>
-	    <span class="icon-bar"></span>
-	    <span class="icon-bar"></span>
-	  </button>
-	  <a class="navbar-brand" href="/">久安门业</a>
-	</div>
-	<div id="navbar" class="navbar-collapse collapse">
-	  <ul class="nav navbar-nav">
-	    <% @menus.each do |menu| %>
-	      <li <%= "class=active" if menu[:active] %>><a href="<%= menu[:url] %>"><%= menu[:text] %></a></li>
-	    <% end %>
-	  </ul>
-	</div><!--/.nav-collapse -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">久安门业</a>
+        </div>
       </div>
     </nav>
-
-    <div class="container">
-      
-      <% unless notice.nil? %>
-      <div id="flash_notice" class="alert alert-success" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <%= notice %>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar">
+	    <% @menus.each do |menu| %>
+	    <li <%= "class=active" if menu[:active] %>><a href="<%= menu[:url] %>"><%= menu[:text] %></a></li>
+	    <% end %>
+          </ul>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <% unless notice.nil? %>
+          <div id="flash_notice" class="alert alert-success" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <%= notice %>
+          </div>
+          <% end %>
+          
+          <% unless alert.nil? %>
+          <div id="flash_alert" class="alert alert-danger" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <%= alert %>
+          </div>
+          <% end %>
+          
+          <%= yield %>
+          
+        </div>
       </div>
-      <% end %>
-      
-      <% unless alert.nil? %>
-      <div id="flash_alert" class="alert alert-danger" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <%= alert %>
-      </div>
-      <% end %>
-      
-      <%= yield %>
     </div>
-
-    <footer class="footer">
-      <div class="container">
-	<p class="text-muted">© 淇浩工贸有限公司 2014</p>
-      </div>
-    </footer>
 
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag params[:controller] %>

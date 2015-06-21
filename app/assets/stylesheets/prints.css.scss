@@ -1,0 +1,49 @@
+// Place all the styles related to the prints controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+*::-webkit-input-placeholder {
+    color: #ccc !important;
+}
+
+#print_output {
+    display: none;
+}
+
+@media print {
+    body, .main {
+        margin: 0;
+        padding: 0;
+    }
+    #operation_area {
+        display: none;
+    }
+
+    html .sidebar, html nav {
+        display: none;
+    }
+
+    #print_output, #print_output *{
+        display: block;
+    }
+
+    html, body {
+        width: 210mm;
+        height: 277mm;
+    }
+
+    .page-break {
+        page-break-before: always;
+    }
+
+    canvas {
+        width: 100%;
+    }
+
+    @page {
+        size: portrait A4;
+        margin-top: 5mm;
+        margin-bottom: 0;
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
