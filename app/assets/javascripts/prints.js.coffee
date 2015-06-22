@@ -249,7 +249,7 @@ config = {
                 frame_inner_x: "size_x-259" # 扇内框宽
                 frame_inner_y: "size_y-sill-218" # 扇内框高
                 lock_frame: 997 # 锁(扇)
-                lock_border: 1030 # 锁(框)
+                lock_border: 1040 # 锁(框)
         },
         "1.2": {
                 glass_x: "size_x-183" # 玻璃宽
