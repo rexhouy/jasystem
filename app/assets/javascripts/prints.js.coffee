@@ -216,13 +216,13 @@ getData = () ->
 
 config = {
         "0.8": {
-                glass_x: 'size_x-210' # 玻璃宽
+                glass_x: 'size_x-212' # 玻璃宽
                 glass_y: "size_y-sill-175" # 玻璃高
-                border_inner_x: "size_x-80" # 框宽
-                border_inner_y: "size_y-40" # 框高
-                frame_outer_x: "size_x-205" # 扇外框宽
+                border_inner_x: "size_x-85" # 框宽
+                border_inner_y: "size_y-43" # 框高
+                frame_outer_x: "size_x-208" # 扇外框宽
                 frame_outer_y: "size_y-sill-33" # 扇外框高
-                frame_inner_x: "size_x-205" # 扇内框宽
+                frame_inner_x: "size_x-208" # 扇内框宽
                 frame_inner_y: "size_y-sill-33" # 扇内框高
                 lock_frame: 997 # 锁(扇)
                 lock_border: 1030 # 锁(框)
@@ -243,11 +243,11 @@ config = {
                 glass_x: "size_x-240" # 玻璃宽
                 glass_y: "size_y-sill-198" # 玻璃高
                 border_inner_x: "size_x-108" # 框宽
-                border_inner_y: "size_y-50" # 框高
+                border_inner_y: "size_y-54" # 框高
                 frame_outer_x: "size_x-83" # 扇外框宽
-                frame_outer_y: "size_y-sill-42" # 扇外框高
+                frame_outer_y: "size_y-sill-46" # 扇外框高
                 frame_inner_x: "size_x-259" # 扇内框宽
-                frame_inner_y: "size_y-sill-218" # 扇内框高
+                frame_inner_y: "size_y-sill-222" # 扇内框高
                 lock_frame: 997 # 锁(扇)
                 lock_border: 1040 # 锁(框)
         },
